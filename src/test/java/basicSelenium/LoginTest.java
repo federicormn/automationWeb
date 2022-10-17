@@ -44,17 +44,5 @@ public class LoginTest
 
         Assertions.assertTrue(driver.findElement(By.xpath("//a[text()='Logout']")).isDisplayed(),"ERROR");
 
-
-
-//        click boton login --> //img[@src='/Images/design/pagelogin.png']
-//                email ---> ctl00_MainContent_LoginControl1_TextBoxEmail
-//        pwd ---> ctl00_MainContent_LoginControl1_TextBoxPassword
-//        login --> ctl00_MainContent_LoginControl1_ButtonLogin
-//
-//        logout --> //a[text()='Logout']   ---> Assertions
-//
-//        selenium@selenium2022.com
-//        12345
-
     }
 }
