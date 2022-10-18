@@ -51,6 +51,7 @@ public class CRUDProjectTest
 
         Assertions.assertTrue(driver.findElement(By.xpath("//li[last()]//td[text()='HOLIS']")).isDisplayed(), "ERROR, element not found.");
 
+        driver.findElement(By.xpath("//li[last()]//td[text()='HOLIS']")).click();
         driver.findElement(By.xpath("//img[@src=\"/Images/dropdown.png\"]/parent::div[@style=\"display: block;\"]/img")).click();
         driver.findElement(By.cssSelector("#projectContextMenu > li.edit > a")).click();
         Thread.sleep(3000);
