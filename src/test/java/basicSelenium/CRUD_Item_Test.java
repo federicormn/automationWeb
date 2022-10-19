@@ -41,7 +41,7 @@ public class CRUD_Item_Test
 
     @Test
     public void crudItemTest() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
         //LOGIN
         String userMail = "fhr@fhr.com";
@@ -92,6 +92,7 @@ public class CRUD_Item_Test
         // [ISEMPTY?] --> Assertions.assertFalse(driver.findElement(By.xpath("//ul[@id=\"mainItemList\"]/li[last()]//div[@class=\"ItemContentDiv\"]")).isDisplayed(), "Error, Item was not deleted.");
 
         Assertions.assertTrue(driver.findElement(By.id("InfoMessageText")).isDisplayed());
+        Thread.sleep(10000);
 
     }
 }
