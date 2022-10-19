@@ -58,6 +58,8 @@ public class CRUD_Item_Test
 
         String randomTime = ""+ new Date().getTime();
         String nameProj="AUTO"+ randomTime;
+        String itemName = randomTime;
+        String editedItemName = "EDIT " + randomTime;
 
         driver.findElement(By.xpath("//td[text()='Add New Project']")).click();
         driver.findElement(By.id("NewProjNameInput")).sendKeys(nameProj);
@@ -66,11 +68,11 @@ public class CRUD_Item_Test
         String actualResult= driver.findElement(By.xpath("//li[last()]//td[text()='"+nameProj+"']")).getText();
         String expectedResult = nameProj;
 
-        Assertions.assertEquals(expectedResult,actualResult,"ERROR no se creo el project");
+        Assertions.assertEquals(expectedResult,actualResult,"Error, project not created.");
         //Assertions.assertEquals(driver.findElement(By.xpath("//div[@id=\"CurrentProjectTitle\"]")).getAttribute("textContent"), nameProj, "Project created is not in focus.");
 
         //CREATING ITEM INSIDE PROJECT
-        driver.findElement(By.id("NewItemContentInput")).sendKeys(randomTime + Keys.ENTER);
+        driver.findElement(By.id("NewItemContentInput")).sendKeys(itemName + Keys.ENTER);
 
         //EDITING ITEM
 
@@ -78,7 +80,9 @@ public class CRUD_Item_Test
         driver.findElement(By.xpath("//ul[@id=\"mainItemList\"]/li[last()]//div[@class=\"ItemContentDiv\"]")).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//textarea[@id='ItemEditTextbox']")));
         driver.findElement(By.xpath("//textarea[@id='ItemEditTextbox']")).clear();
-        driver.findElement(By.xpath("//textarea[@id='ItemEditTextbox']")).sendKeys("EDIT "+ randomTime + Keys.ENTER);
+        driver.findElement(By.xpath("//textarea[@id='ItemEditTextbox']")).sendKeys(editedItemName + Keys.ENTER);
+
+        Assertions.assertNotEquals(itemName, editedItemName, "Error, item not edited.");
 
         //DELETING PROJECT
         driver.findElement(By.xpath("//img[@style= \"display: inline;\"]")).click();
@@ -86,6 +90,7 @@ public class CRUD_Item_Test
 
         wait.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id=\"mainItemList\"]/li[last()]//div[@class=\"ItemContentDiv\"]"))));
         // [ISEMPTY?] --> Assertions.assertFalse(driver.findElement(By.xpath("//ul[@id=\"mainItemList\"]/li[last()]//div[@class=\"ItemContentDiv\"]")).isDisplayed(), "Error, Item was not deleted.");
+
         Assertions.assertTrue(driver.findElement(By.id("InfoMessageText")).isDisplayed());
 
     }
