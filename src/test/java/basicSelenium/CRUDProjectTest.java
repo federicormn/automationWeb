@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class CRUDProjectTest
 {
@@ -75,24 +76,24 @@ public class CRUDProjectTest
     public void createAndVerifyAccount() throws InterruptedException
     {
         //CREATION
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         String mailName="mail"+new Date().getTime()+"@mail.com";
         String firstPassword = "12345";
 
-        driver.findElement(By.cssSelector("#ctl00_MainContent_PanelNotAuth > div.HomePageTop2 > div.HPHeaderRight > div.HPHeaderSignup > a > img")).click();
-        Thread.sleep(3000);
+        driver.findElement(By.xpath("//img[@src=\"/Images/design/pagesignup.png\"]")).click();
         driver.findElement(By.id("ctl00_MainContent_SignupControl1_TextBoxFullName")).sendKeys("Fede");
         driver.findElement(By.id("ctl00_MainContent_SignupControl1_TextBoxEmail")).sendKeys(mailName);
         driver.findElement(By.id("ctl00_MainContent_SignupControl1_TextBoxPassword")).sendKeys(firstPassword);
         driver.findElement(By.id("ctl00_MainContent_SignupControl1_CheckBoxTerms")).click();
         driver.findElement(By.id("ctl00_MainContent_SignupControl1_ButtonSignup")).click();
-        Thread.sleep(3000);
+
         Assertions.assertTrue(driver.findElement(By.id("ctl00_HeaderTopControl1_LinkButtonLogout")).isDisplayed(), "ERROR, account could not be created.");
 
         //PASSWORD MODIFICATION
         String newPassword = "1234";
 
-        driver.findElement(By.xpath("//*[@id=\"ctl00_HeaderTopControl1_PanelHeaderButtons\"]/a[1]")).click();
+        driver.findElement(By.xpath("//a[@href=\"javascript:OpenSettingsDialog();\"]")).click();
         Thread.sleep(3000);
 
         //.getAttribute() se copia cualquier propiedad del elemento, en este caso el "value"
@@ -101,13 +102,13 @@ public class CRUDProjectTest
         driver.findElement(By.id("TextPwOld")).sendKeys(firstPassword);
         driver.findElement(By.id("TextPwNew")).sendKeys(newPassword);
         Thread.sleep(3000);
-        driver.findElement(By.xpath("/html/body/div[9]/div[2]/div/button[1]/span")).click();
+        driver.findElement(By.xpath("//button[@class=\"ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only\"]//span")).click();
         Thread.sleep(3000);
         Assertions.assertFalse(driver.findElement(By.id("settings_tabs")).isDisplayed(),"ERROR, password not changed.");
 
         //LOGOUT - LOGIN
         driver.findElement(By.id("ctl00_HeaderTopControl1_LinkButtonLogout")).click();
-        driver.findElement(By.xpath("//*[@id=\"ctl00_MainContent_PanelNotAuth\"]/div[2]/div[1]/div[2]/a/img")).click();
+        driver.findElement(By.xpath("//img[@src=\"/Images/design/pagelogin.png\"]")).click();
         driver.findElement(By.id("ctl00_MainContent_LoginControl1_TextBoxEmail")).sendKeys(currentMail);
         driver.findElement(By.id("ctl00_MainContent_LoginControl1_TextBoxPassword")).sendKeys(newPassword);
         Thread.sleep(3000);
