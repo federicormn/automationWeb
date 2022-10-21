@@ -68,8 +68,11 @@ public class CRUD_Item_Test
         String actualResult= driver.findElement(By.xpath("//li[last()]//td[text()='"+nameProj+"']")).getText();
         String expectedResult = nameProj;
 
+        //SAVING AMOUNT OF PROJECTS AT THIS POINT
+        int projectAmount = Integer.parseInt(driver.findElement(By.id("mainItemList")).getAttribute("childElementCount"));
+        //
+
         Assertions.assertEquals(expectedResult,actualResult,"Error, project not created.");
-        //Assertions.assertEquals(driver.findElement(By.xpath("//div[@id=\"CurrentProjectTitle\"]")).getAttribute("textContent"), nameProj, "Project created is not in focus.");
 
         //CREATING ITEM INSIDE PROJECT
         driver.findElement(By.id("NewItemContentInput")).sendKeys(itemName + Keys.ENTER);
@@ -89,10 +92,13 @@ public class CRUD_Item_Test
         driver.findElement(By.xpath("//ul[@id=\"itemContextMenu\"]//a[@href=\"#delete\"]")).click();
 
         wait.until(ExpectedConditions.not(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id=\"mainItemList\"]/li[last()]//div[@class=\"ItemContentDiv\"]"))));
-        // [ISEMPTY?] --> Assertions.assertFalse(driver.findElement(By.xpath("//ul[@id=\"mainItemList\"]/li[last()]//div[@class=\"ItemContentDiv\"]")).isDisplayed(), "Error, Item was not deleted.");
 
+        int projectAmountAfterDelete = Integer.parseInt(driver.findElement(By.id("mainItemList")).getAttribute("childElementCount"));
+        System.out.println("ELEMENTS BEFORE:" + projectAmount + " AFTER: " + projectAmountAfterDelete);
+
+        Assertions.assertNotEquals(projectAmount, projectAmountAfterDelete);
         Assertions.assertTrue(driver.findElement(By.id("InfoMessageText")).isDisplayed());
-        Thread.sleep(10000);
+        Thread.sleep(5000);
 
     }
 }
