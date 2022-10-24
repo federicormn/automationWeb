@@ -1,4 +1,4 @@
-package cleanTest;
+package cleanTest.todo.Ly;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

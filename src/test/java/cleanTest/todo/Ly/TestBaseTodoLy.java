@@ -1,4 +1,4 @@
-package cleanTest;
+package cleanTest.todo.Ly;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +13,7 @@ public class TestBaseTodoLy
     public SettingsMenu settingsMenu = new SettingsMenu();
 
     public SignUpModal signUpModal = new SignUpModal();
+    public  ProjectsList projectsList = new ProjectsList();
 
 
     @BeforeEach

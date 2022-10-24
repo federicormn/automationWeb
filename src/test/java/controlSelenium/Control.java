@@ -2,6 +2,7 @@ package controlSelenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import singletonSession.Session;
@@ -65,6 +66,12 @@ public class Control
         WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(this.locator));
     }
+
+//    public void wait()
+//    {
+//        WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
+//        wait.until(ExpectedConditions.textToBePresentInElementLocated())
+//    }
 
 
 
