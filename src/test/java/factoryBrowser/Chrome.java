@@ -13,7 +13,7 @@ public class Chrome implements IBrowser
         System.setProperty("webdriver.chrome.driver","src/test/resources/driver/chromedriver.exe");
         ChromeDriver driver = new ChromeDriver();
         driver.get("https://todo.ly/");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         return driver;
     }

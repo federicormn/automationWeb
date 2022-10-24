@@ -67,11 +67,17 @@ public class Control
         wait.until(ExpectedConditions.presenceOfElementLocated(this.locator));
     }
 
-//    public void wait()
-//    {
-//        WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.textToBePresentInElementLocated())
-//    }
+    public void waitTextToBePresent(String value)
+    {
+        WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(this.locator, value));
+    }
+
+    public void waitAttributeToBe(String attribute, String value)
+    {
+        WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.attributeToBe(this.locator, attribute, value));
+    }
 
 
 
