@@ -2,6 +2,7 @@ package singletonSession;
 
 import factoryBrowser.FactoryBrowser;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class Session
 {
@@ -36,4 +37,11 @@ public class Session
 
     //alertas
     //tabs /wondws /iframes
+    //Implementation of iFrames
+    public void switchIFrame(String iFrameId)
+    {
+        getInstance().getBrowser().switchTo().frame(iFrameId);
+    }
 }
+
+

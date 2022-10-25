@@ -25,6 +25,7 @@ public class Control
         //explicit wait/s (clickable/visible/isDisplaye)
     }
 
+
     public void click()
     {
         this.findControl();
