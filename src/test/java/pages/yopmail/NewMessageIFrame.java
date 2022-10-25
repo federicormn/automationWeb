@@ -1,6 +1,7 @@
 package pages.yopmail;
 
 import controlSelenium.Button;
+import controlSelenium.Label;
 import controlSelenium.TextBox;
 import org.openqa.selenium.By;
 
@@ -10,4 +11,6 @@ public class NewMessageIFrame
     public TextBox subjectTextBox = new TextBox(By.id("msgsubject"));
     public TextBox bodyTextBox = new TextBox(By.id("msgbody"));
     public Button sendMessageButton = new Button(By.id("msgsend"));
+
+    public Label messageSentPopUp = new Label(By.id("msgpopmsg"));
 }

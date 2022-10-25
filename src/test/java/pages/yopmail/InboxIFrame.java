@@ -18,5 +18,11 @@ public class InboxIFrame
         return mailToFind.isControlDisplayed();
 
     }
+
+    public boolean searchSubjectIntoEmail(String textToFind)
+    {
+        Button mailSubject = new Button(By.xpath("//div[@class='lms' and text()='" + textToFind + "']"));
+        return mailSubject.isControlDisplayed();
+    }
 }
 

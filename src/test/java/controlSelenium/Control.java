@@ -62,6 +62,18 @@ public class Control
         wait.until(ExpectedConditions.elementToBeClickable(this.locator));
     }
 
+    public void waitControl(By locator, int timeOut) throws InterruptedException {
+        Label test = new Label(this.locator);
+        int i = 0;
+        do
+        {
+            Thread.sleep(1000);
+            i++;
+            this.control.click();
+
+        }while (!test.isControlDisplayed() || i<= timeOut);
+    }
+
     public void waitPresenceOfElement()
     {
         WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
@@ -72,6 +84,12 @@ public class Control
     {
         WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.textToBePresentInElementLocated(this.locator, value));
+    }
+
+    public void waitTextToDissapear(String value)
+    {
+        WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.not(ExpectedConditions.textToBePresentInElementLocated(this.locator, value)));
     }
 
     public void waitAttributeToBe(String attribute, String value)

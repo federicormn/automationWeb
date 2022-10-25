@@ -13,31 +13,33 @@ public class CrudMailTest extends TestBaseYopmail
     @Test
     public void createEmail() throws InterruptedException {
         String randomEmail = new Date().getTime() + "@yopmail.com";
+        String subject = "Hola";
 
         mainPageYopmail.emailNameTextBox.setText(randomEmail);
         mainPageYopmail.submitEmailButton.click();
-        Thread.sleep(2000);
 
         inboxIFrame.newEMailButton.waitClickable();
         inboxIFrame.newEMailButton.click();
-        //Session.getInstance().switchIFrame("ifinbox");
 
-        //Session.getInstance().getBrowser().switchTo().frame("ifmail");
         Session.getInstance().switchIFrame("ifmail");
         newMessageIFrame.recipientTextBox.setText(randomEmail);
-        newMessageIFrame.subjectTextBox.setText("Hola");
+        newMessageIFrame.subjectTextBox.setText(subject);
         newMessageIFrame.bodyTextBox.setText("Un saludo");
         newMessageIFrame.sendMessageButton.click();
 
-        Thread.sleep(3000);
-
+        newMessageIFrame.messageSentPopUp.waitTextToBePresent("Your message has been sent");
+        Assertions.assertTrue(newMessageIFrame.messageSentPopUp.isControlDisplayed(), "Error, Popup not displayed.");
 
         Session.getInstance().getBrowser().switchTo().defaultContent();
+        inboxIFrame.refreshButton.waitClickable();
         inboxIFrame.refreshButton.click();
+        inboxIFrame.refreshButton.waitTextToDissapear("loading");
 
         Session.getInstance().switchIFrame("ifinbox");
 
-        Assertions.assertTrue(inboxIFrame.searchEmailSender(randomEmail));
+        Assertions.assertTrue(inboxIFrame.searchEmailSender(randomEmail) && inboxIFrame.searchSubjectIntoEmail(subject));
+
+        Thread.sleep(3000);
 
 
     }

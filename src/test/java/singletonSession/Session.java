@@ -42,6 +42,11 @@ public class Session
     {
         getInstance().getBrowser().switchTo().frame(iFrameId);
     }
+
+    public void switchToDefault()
+    {
+        getInstance().getBrowser().switchTo().defaultContent();
+    }
 }
 
 
