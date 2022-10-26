@@ -18,9 +18,10 @@ public class Exercise1Test extends TestBaseSaucedemo
 
         Assertions.assertEquals(catalogPage.getFirstItemName(), testItem);
 
-        catalogPage.addToCartButton.click();
+        catalogPage.addToCartByName(testItem).click();
         catalogPage.cartButton.click();
 
         Assertions.assertTrue(cartPage.searchItemName(testItem));
+
     }
 }

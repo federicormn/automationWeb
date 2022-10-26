@@ -22,4 +22,16 @@ public class CatalogPage
 
         return array[0];
     }
+
+    public String normalizeStringForLocator(String toNormalize)
+    {
+        return toNormalize.replace(" ", "-").toLowerCase();
+    }
+
+    public Button addToCartByName(String itemName)
+    {
+        itemName = normalizeStringForLocator(itemName);
+        Button addToCartButton = new Button(By.xpath("//button[@data-test='add-to-cart-"+itemName+"']"));
+        return addToCartButton;
+    }
 }
