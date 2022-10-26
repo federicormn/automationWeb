@@ -2,6 +2,7 @@ package cleanTest.yopmail;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebElement;
 import pages.yopmail.NewMessageIFrame;
 import singletonSession.Session;
 
@@ -33,7 +34,11 @@ public class CrudMailTest extends TestBaseYopmail
         Session.getInstance().getBrowser().switchTo().defaultContent();
         inboxIFrame.refreshButton.waitClickable();
         inboxIFrame.refreshButton.click();
+
         inboxIFrame.refreshButton.waitTextToDissapear("loading");
+        inboxIFrame.inboxListIFrame.waitTextToDissapear("hidden");
+
+        //Session.getInstance().fetchFromIFrame(inboxIFrame.refreshButton, "ifmail", inboxIFrame,randomEmail, 10);
 
         Session.getInstance().switchIFrame("ifinbox");
 
