@@ -25,6 +25,12 @@ public class TextBox extends Control
         this.control.sendKeys(value + Keys.ENTER);
     }
 
+    public void writeText(String value)
+    {
+        this.findControl();
+        this.control.sendKeys(value);
+    }
+
     public void clearTextBox()
     {
         this.findControl();

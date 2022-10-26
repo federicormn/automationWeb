@@ -16,6 +16,8 @@ public class TestBaseTodoist
     public ProjectActionsMenu projectActionsMenu = new ProjectActionsMenu();
     public EditProjectModal editProjectModal = new EditProjectModal();
     public DeleteProjectWindow deleteProjectWindow = new DeleteProjectWindow();
+    public CenterMenu centerMenu = new CenterMenu();
+    public EditItemModal editItemModal = new EditItemModal();
 
 
 

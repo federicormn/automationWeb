@@ -98,6 +98,18 @@ public class Control
         wait.until(ExpectedConditions.attributeToBe(this.locator, attribute, value));
     }
 
+    public void waitVisibilityOfElement()
+    {
+        WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(this.locator));
+    }
+
+    public void waitInvisvilityofElement()
+    {
+        WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(this.locator));
+    }
+
 
 
 }
