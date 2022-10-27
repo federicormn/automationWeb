@@ -98,6 +98,12 @@ public class Control
         wait.until(ExpectedConditions.attributeToBe(this.locator, attribute, value));
     }
 
+    public void waitAttributeNotToBe(String attribute, String value)
+    {
+        WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.not(ExpectedConditions.attributeToBe(this.locator, attribute, value)));
+    }
+
     public void waitVisibilityOfElement()
     {
         WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
@@ -108,6 +114,21 @@ public class Control
     {
         WebDriverWait wait = new WebDriverWait(Session.getInstance().getBrowser(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(this.locator));
+    }
+
+    public void clickAndWaitResponse(boolean condition) throws InterruptedException {
+        do
+        {
+            this.control.click();
+            Thread.sleep(500);
+
+        }while(!condition);
+
+    }
+
+    public void makeAnAction()
+    {
+        Actions action = new Actions(Session.getInstance().getBrowser());
     }
 
 
