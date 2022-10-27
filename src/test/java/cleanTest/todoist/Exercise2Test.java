@@ -1,6 +1,7 @@
 package cleanTest.todoist;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 public class Exercise2Test extends TestBaseTodoist
@@ -46,6 +47,7 @@ public class Exercise2Test extends TestBaseTodoist
         editItemModal.nextWeekDueDateButton.click();
 
         editItemModal.selectNewPriority.click();
+        //editItemModal.choosePriority("2");
         editItemModal.pickPriority2.click();
         editItemModal.closeModal.click();
 

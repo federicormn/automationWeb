@@ -20,9 +20,11 @@ public class EditItemModal
     public Button closeModal = new Button(By.xpath("//button[@aria-label=\"Close modal\"]"));
 
 
-    public void getCurrentPriority()
+    public Button choosePriority(String priorityNumber)
     {
+        Button chosenPriority = new Button(By.xpath("//span[text()='Priority" +priorityNumber+"']"));
 
+        return chosenPriority;
     }
 
 }
