@@ -44,7 +44,7 @@ public class Exercise3TickTick extends TestBaseTickTick
     }
 
     @Test
-    public void resetUniqueEmail()
+    public void resetUniqueEmailTest()
     {
         mainPageTickTick.signInButton.click();
         signInPage.login("fhr@fhr.com","123456");
@@ -153,7 +153,7 @@ public class Exercise3TickTick extends TestBaseTickTick
 
     }
     @Test
-    public void createNewList() throws InterruptedException
+    public void createNewListTest() throws InterruptedException
     {
         String newListName = getAlphaNumericString(5);
 
@@ -173,7 +173,7 @@ public class Exercise3TickTick extends TestBaseTickTick
 
     }
     @Test
-    public void createNewHabit() throws InterruptedException
+    public void createNewHabitTest() throws InterruptedException
     {
         String newHabitName = getAlphaNumericString(5);
 
@@ -196,7 +196,7 @@ public class Exercise3TickTick extends TestBaseTickTick
         Thread.sleep(1500);
     }
     @Test
-    public void deleteHabit() throws InterruptedException {
+    public void deleteHabitTest() throws InterruptedException {
         String newHabitName = getAlphaNumericString(5);
 
         mainPageTickTick.signInButton.click();
