@@ -73,13 +73,9 @@ public class Exercise3TickTick extends TestBaseTickTick
     @Test
     public void changePasswordTest()
     {
-        //String testEmail = new Date().getTime() + "@mail.com";
         String testEmail = registrationPage.getAlphaNumericString(5) + "@mail.com";
         String firstPassword = "123456";
         String newPassword = "1234567";
-//
-//        mainPageTickTick.signInButton.click();
-//        signInPage.login(testEmail,firstPassword);
 
         registrationPage.registerNewAccountParam(mainPageTickTick.signUpButton, testEmail,firstPassword);
 
@@ -103,8 +99,6 @@ public class Exercise3TickTick extends TestBaseTickTick
         accountAndSecurity.saveNewPassword.waitInvisvilityofElement();
         accountAndSecurity.currentPasswordTextBox.waitInvisvilityofElement();
         accountAndSecurity.newPasswordTextBox.waitInvisvilityofElement();
-
-        //accountAndSecurity.resetPasswordToDefault(newPassword,firstPassword); // TO RESET AND MAKE TEST SUSTAINABLE
 
         settingsPage.doneButton.click();
 
