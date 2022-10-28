@@ -1,4 +1,4 @@
-package pages.ticktick.UserMainPage;
+package pages.ticktick.userMainPage;
 
 import controlSelenium.Button;
 import org.openqa.selenium.By;

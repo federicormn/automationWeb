@@ -1,4 +1,4 @@
-package pages.ticktick.ProfileSettings;
+package pages.ticktick.profileSettings;
 
 import controlSelenium.Button;
 import controlSelenium.TextBox;

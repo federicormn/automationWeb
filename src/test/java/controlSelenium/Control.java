@@ -126,10 +126,11 @@ public class Control
 
     }
 
-    public void makeAnAction()
+    public void makeRightClickAction()
     {
+        this.findControl();
         Actions action = new Actions(Session.getInstance().getBrowser());
-        action.contextClick((WebElement)this);
+        action.contextClick(this.control).perform();
     }
 
 

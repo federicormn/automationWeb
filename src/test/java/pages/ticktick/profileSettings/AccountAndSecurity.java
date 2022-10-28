@@ -1,9 +1,8 @@
-package pages.ticktick.ProfileSettings;
+package pages.ticktick.profileSettings;
 
 import controlSelenium.Button;
 import controlSelenium.TextBox;
 import org.openqa.selenium.By;
-import org.w3c.dom.Text;
 
 public class AccountAndSecurity
 {
