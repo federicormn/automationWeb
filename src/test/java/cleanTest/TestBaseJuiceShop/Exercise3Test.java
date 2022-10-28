@@ -2,7 +2,6 @@ package cleanTest.TestBaseJuiceShop;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import pages.OWaspJuiceShop.UserRegistrationPage;
 
 import java.util.Date;
 
@@ -65,7 +64,6 @@ public class Exercise3Test extends TestBaseJuiceShop
         catalogPage.logOutButton.click();
 
         Assertions.assertFalse(catalogPage.shoppingCartButton.isControlDisplayed());
-
 
         Thread.sleep(2000);
     }

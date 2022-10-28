@@ -2,12 +2,10 @@ package cleanTest.TestBaseJuiceShop;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import pages.OWaspJuiceShop.CatalogPage;
-import pages.OWaspJuiceShop.LoginPageJuiceShop;
-import pages.OWaspJuiceShop.UserRegistrationPage;
-import pages.OWaspJuiceShop.WelcomePopUp;
-import pages.saucedemo.CartPage;
-import pages.saucedemo.LoginPageSaucedemo;
+import pages.oWaspJuiceShop.CatalogPage;
+import pages.oWaspJuiceShop.LoginPageJuiceShop;
+import pages.oWaspJuiceShop.UserRegistrationPage;
+import pages.oWaspJuiceShop.WelcomePopUp;
 import singletonSession.Session;
 
 public class TestBaseJuiceShop
@@ -21,8 +19,8 @@ public class TestBaseJuiceShop
     public void setup()
     {
         // todo --> create properties file
-        //Session.getInstance().getBrowser().get("https://juice-shop.herokuapp.com/#/");
-        Session.getInstance().getBrowser().get("http://192.168.100.26:3000/#/");//http://192.168.100.26:3000/#/
+        //Session.getInstance().getBrowser().get("https://juice-shop.herokuapp.com/#/");// --> webpage
+        Session.getInstance().getBrowser().get("http://192.168.100.26:3000/#/");// --> Docker on linux
     }
 
     @AfterEach

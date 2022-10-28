@@ -1,12 +1,9 @@
-package pages.OWaspJuiceShop;
+package pages.oWaspJuiceShop;
 
 import controlSelenium.Button;
 import controlSelenium.Label;
 import controlSelenium.TextBox;
 import org.openqa.selenium.By;
-import org.w3c.dom.Text;
-
-import java.security.PublicKey;
 
 public class UserRegistrationPage
 {

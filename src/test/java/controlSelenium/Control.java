@@ -129,6 +129,7 @@ public class Control
     public void makeAnAction()
     {
         Actions action = new Actions(Session.getInstance().getBrowser());
+        action.contextClick((WebElement)this);
     }
 
 

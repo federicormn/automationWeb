@@ -1,4 +1,4 @@
-package pages.OWaspJuiceShop;
+package pages.oWaspJuiceShop;
 
 import controlSelenium.Button;
 import controlSelenium.TextBox;
