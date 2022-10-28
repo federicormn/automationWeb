@@ -84,7 +84,7 @@ public class Exercise3TickTick extends TestBaseTickTick
     @Test
     public void changePasswordTest()
     {
-        String testEmail = "fhr@fhr.com";
+        String testEmail = "fhr2@fhr2.com";
         String firstPassword = "123456";
         String newPassword = "1234567";
 
@@ -122,6 +122,8 @@ public class Exercise3TickTick extends TestBaseTickTick
         signInPage.login(testEmail, firstPassword);
 
         Assertions.assertTrue(signInPage.incorrectCredentialsMsg.isControlDisplayed());
+
+
 
     }
 
@@ -165,6 +167,7 @@ public class Exercise3TickTick extends TestBaseTickTick
         Assertions.assertTrue(signInPage.incorrectCredentialsMsg.isControlDisplayed());
 
     }
+
 
 
 }
