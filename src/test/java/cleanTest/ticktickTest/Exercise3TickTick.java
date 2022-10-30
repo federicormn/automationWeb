@@ -100,15 +100,21 @@ public class Exercise3TickTick extends TestBaseTickTick
         accountAndSecurity.currentPasswordTextBox.waitInvisvilityofElement();
         accountAndSecurity.newPasswordTextBox.waitInvisvilityofElement();
 
-        settingsPage.doneButton.click();
+        if(signInPage.verifyRedirectAfterPasswordChange(testEmail,firstPassword,accountAndSecurity.accountAndSecurityHeader))
+        {
+            Assertions.assertTrue(signInPage.incorrectCredentialsMsg.isControlDisplayed());
+        }else
+        {
+            settingsPage.doneButton.click();
 
-        leftNavBar.profilePictureID.click();
-        profileOptionsMenu.signOut.click();
+            leftNavBar.profilePictureID.click();
+            profileOptionsMenu.signOut.click();
 
-        mainPageTickTick.signInButton.click();
-        signInPage.login(testEmail, firstPassword);
+            mainPageTickTick.signInButton.click();
+            signInPage.login(testEmail, firstPassword);
 
-        Assertions.assertTrue(signInPage.incorrectCredentialsMsg.isControlDisplayed());
+            Assertions.assertTrue(signInPage.incorrectCredentialsMsg.isControlDisplayed());
+        }
 
     }
 

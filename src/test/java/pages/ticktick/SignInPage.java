@@ -1,6 +1,7 @@
 package pages.ticktick;
 
 import controlSelenium.Button;
+import controlSelenium.Control;
 import controlSelenium.Label;
 import controlSelenium.TextBox;
 import org.openqa.selenium.By;
@@ -25,4 +26,23 @@ public class SignInPage
         signInButton.waitClickable();
         signInButton.click();
     }
+
+    public boolean verifyRedirectAfterPasswordChange(String userEmail, String oldPassword, Control previousPage)
+    {
+        if(emailTextBox.isControlDisplayed())
+        {
+            previousPage.waitInvisvilityofElement();
+            emailTextBox.writeText(userEmail);
+            passwordTextBox.writeText(oldPassword);
+            signInButton.click();
+
+            return true;
+        }else
+        {
+            return false;
+        }
+
+    }
+
+
 }
