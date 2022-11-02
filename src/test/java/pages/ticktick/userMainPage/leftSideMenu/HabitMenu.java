@@ -14,6 +14,10 @@ public class HabitMenu
     public Button deleteHabitButton = new Button(By.xpath("//span[text()=\"Delete\"]"));
     public Button deleteHabitConfirmationButton = new Button(By.xpath("//Button[text()=\"Delete\"]"));
 
+    public Button archiveHabitButton = new Button(By.xpath("//span[text()=\"Archive\"]"));
+
+    public Button archivedHabitsViewButton = new Button(By.xpath("//div[text()=\"Archived\"]"));
+
     public Button searchHabitByName(String habitName)
     {
         return new Button(By.xpath("//p[@class='ml-[8px] flex-auto text-sm text-grey leading-[20px] truncate' and text()='"+habitName+"']"));

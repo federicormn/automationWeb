@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.yopmail.InboxIFrame;
+import utils.GetProperties;
 
 public class Session
 {
@@ -16,7 +17,7 @@ public class Session
     {
         // todo --> create properties file - browser
         //SE LLAMA UNA UNICA VEZ -- TO-DO CREATE PROPERTIES FILE (browser) - NO USAR VALORES QUEMADOS
-        browser = FactoryBrowser.make("chrome").create();
+        browser = FactoryBrowser.make(GetProperties.getInstance().getBrowser()).create();
     }
 
     public static Session getInstance() //SIN SYNCHRONIZED PARA EJECUCIONES PARALELAS

@@ -10,12 +10,17 @@ public class Checkbox extends Control
         super(locator);
     }
 
+    public Checkbox(By locator, String controlName) {
+        super(locator, controlName);
+    }
+
     public void check()
     {
         this.findControl();
 
         if(!this.control.isSelected())
         {
+            this.step("Check the control "+this.controlName);
             control.click();
         }
     }
@@ -25,6 +30,7 @@ public class Checkbox extends Control
         this.findControl();
         if(this.control.isSelected())
         {
+            this.step("Uncheck the control "+this.controlName);
             control.click();
         }
     }

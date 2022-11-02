@@ -2,24 +2,25 @@ package factoryBrowser;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
-public class FireFox implements IBrowser
+public class Headless implements IBrowser
 {
 
     @Override
     public WebDriver create()
     {
-        System.setProperty("webdriver.gecko.driver","src/test/resources/driver/geckodriver.exe");
+        System.setProperty("webdriver.chrome.driver","src/test/resources/driver/chromedriver.exe");
 
-        WebDriver driver = new FirefoxDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        ChromeDriver driver = new ChromeDriver(options);
+
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(15));
         return driver;
     }
-
 }
-

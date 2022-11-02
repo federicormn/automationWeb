@@ -14,10 +14,6 @@ public class Chrome implements IBrowser
     {
         System.setProperty("webdriver.chrome.driver","src/test/resources/driver/chromedriver.exe");
 
-//        ChromeOptions options = new ChromeOptions();
-//        options.addArguments("--headless");
-//        ChromeDriver driver = new ChromeDriver(options);
-
         ChromeDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

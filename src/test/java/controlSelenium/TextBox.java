@@ -11,9 +11,14 @@ public class TextBox extends Control
         super(locator);
     }
 
-    public void setText(String value)
+    public TextBox(By locator, String controlName)
     {
+        super(locator, controlName);
+    }
+
+    public void setText(String value){
         this.findControl();
+        this.step("Set on control: "+controlName+" the value: ["+value+"]");
         this.control.clear();
         this.control.sendKeys(value);
     }
@@ -28,6 +33,7 @@ public class TextBox extends Control
     public void writeText(String value)
     {
         this.findControl();
+        this.step("Write on control: "+controlName+" the value: ["+value+"]");
         this.control.sendKeys(value);
     }
 

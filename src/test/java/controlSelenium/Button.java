@@ -10,4 +10,7 @@ public class Button extends Control
         super(locator);
     }
 
+    public Button(By locator, String controlName) {
+        super(locator, controlName);
+    }
 }

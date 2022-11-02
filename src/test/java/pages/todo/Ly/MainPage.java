@@ -5,6 +5,6 @@ import org.openqa.selenium.By;
 
 public class MainPage
 {
-    public Button loginButton= new Button(By.xpath("//img[@src='/Images/design/pagelogin.png']"));
-    public Button signUpButton = new Button(By.xpath("//img[@src=\"/Images/design/pagesignup.png\"]"));
+    public Button loginButton= new Button(By.xpath("//img[@src='/Images/design/pagelogin.png']"),"[Login] button on main page");
+    public Button signUpButton = new Button(By.xpath("//img[@src=\"/Images/design/pagesignup.png\"]"),"[Sign up] button on main page");
 }

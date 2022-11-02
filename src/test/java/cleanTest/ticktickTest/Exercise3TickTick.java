@@ -2,6 +2,9 @@ package cleanTest.ticktickTest;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.Date;
 
@@ -97,13 +100,8 @@ public class Exercise3TickTick extends TestBaseTickTick
         accountAndSecurity.saveNewPassword.click();
 
         accountAndSecurity.saveNewPassword.waitInvisvilityofElement();
-        accountAndSecurity.currentPasswordTextBox.waitInvisvilityofElement();
-        accountAndSecurity.newPasswordTextBox.waitInvisvilityofElement();
 
-        if(signInPage.verifyRedirectAfterPasswordChange(testEmail,firstPassword,accountAndSecurity.accountAndSecurityHeader))
-        {
-            Assertions.assertTrue(signInPage.incorrectCredentialsMsg.isControlDisplayed());
-        }else
+        if(!signInPage.verifyRedirectAfterPasswordChange(testEmail,firstPassword,accountAndSecurity.accountAndSecurityHeader))
         {
             settingsPage.doneButton.click();
 
@@ -113,9 +111,9 @@ public class Exercise3TickTick extends TestBaseTickTick
             mainPageTickTick.signInButton.click();
             signInPage.login(testEmail, firstPassword);
 
-            Assertions.assertTrue(signInPage.incorrectCredentialsMsg.isControlDisplayed());
         }
 
+        Assertions.assertTrue(signInPage.incorrectCredentialsMsg.isControlDisplayed(),"Error, incorrect credentials msg was not displayed.");
     }
 
     @Test
@@ -155,7 +153,7 @@ public class Exercise3TickTick extends TestBaseTickTick
         mainPageTickTick.signInButton.click();
         signInPage.login(randomEmail,firstPassword);
 
-        Assertions.assertTrue(signInPage.incorrectCredentialsMsg.isControlDisplayed());
+        Assertions.assertTrue(signInPage.incorrectCredentialsMsg.isControlDisplayed() && !(leftNavBar.profilePictureID.isControlDisplayed()),"Error, incorrect credentials msg was not displayed.");
 
     }
     @Test
@@ -177,6 +175,36 @@ public class Exercise3TickTick extends TestBaseTickTick
         tasksMenu.searchList(newListName).waitTextToBePresent(newListName);
         Assertions.assertTrue(tasksMenu.searchList(newListName).isControlDisplayed());
 
+    }
+    @Test
+    public void deleteListTest()
+    {
+        String newListName = getAlphaNumericString(5);
+
+        mainPageTickTick.signInButton.click();
+        signInPage.login("fhr@fhr.com","123456");
+
+        Assertions.assertTrue(leftNavBar.profilePictureID.isControlDisplayed());
+
+        leftNavBar.tasksButton.click();
+        tasksMenu.addListButton.click();
+        tasksMenu.newListNameTextBox.writeText(newListName);
+        tasksMenu.saveNewList.click();
+        tasksMenu.saveNewList.waitInvisvilityofElement();
+
+        tasksMenu.searchList(newListName).waitTextToBePresent(newListName);
+        Assertions.assertTrue(tasksMenu.searchList(newListName).isControlDisplayed());
+
+        tasksMenu.searchList(newListName).makeRightClickAction();
+        tasksMenu.deleteListButton.waitClickable();
+        tasksMenu.deleteListButton.click();
+
+        tasksMenu.confirmationPopUpDeleteButton.click();
+        tasksMenu.confirmationPopUpDeleteButton.waitInvisvilityofElement();
+
+        tasksMenu.searchList(newListName).waitInvisvilityofElement();
+
+        Assertions.assertFalse(tasksMenu.searchList(newListName).isControlDisplayed());
     }
     @Test
     public void createNewHabitTest() throws InterruptedException
@@ -202,7 +230,8 @@ public class Exercise3TickTick extends TestBaseTickTick
         Thread.sleep(1500);
     }
     @Test
-    public void deleteHabitTest() throws InterruptedException {
+    public void deleteHabitTest() throws InterruptedException
+    {
         String newHabitName = getAlphaNumericString(5);
 
         mainPageTickTick.signInButton.click();
@@ -229,6 +258,54 @@ public class Exercise3TickTick extends TestBaseTickTick
         habitMenu.deleteHabitConfirmationButton.waitClickable();
         habitMenu.deleteHabitConfirmationButton.click();
         Assertions.assertFalse(habitMenu.searchHabitByName(newHabitName).isControlDisplayed());
+    }
+    @Test
+    public void archiveCreatedHabit()
+    {
+        //Setting a random name for the habit
+        String newHabitName = getAlphaNumericString(5);
+//
+//        //Click on Sign In button (on main page)
+//        mainPageTickTick.signInButton.click();
+//        //Sign in with an already created user
+//        signInPage.login("fhr@fhr.com","123456");
+//
+//        //Expected result: Profile picture button is displayed (login was succesfully made).
+//        Assertions.assertTrue(leftNavBar.profilePictureID.isControlDisplayed(), "Error, login was not possible.");
+
+        ///////////
+        registrationPage.registerNewAccount(mainPageTickTick.signUpButton);
+        inboxPage.skipPopUpButton.click();
+        Assertions.assertTrue(leftNavBar.profilePictureID.isControlDisplayed(), "Error, login was not possible.");
+
+        //Going to "Habit" section
+        leftNavBar.habitButton.click();
+
+        //Settings values for the new habit
+        habitMenu.createHabitButton.click();
+        createHabitModal.dailyCheckInTextBox.writeText(newHabitName);
+        createHabitModal.frequencyButton.click();
+        createHabitModal.fridayFrequencyButton.click();
+        createHabitModal.frequencyOKButton.click();
+        //Confirming new habit creation
+        createHabitModal.saveNewHabit.click();
+        //Expected result: Habit name should be displayed on habits list
+        habitMenu.searchHabitByName(newHabitName).waitVisibilityOfElement();
+        Assertions.assertTrue(habitMenu.searchHabitByName(newHabitName).isControlDisplayed(), "Error, habit not created.");
+
+        //Archiving habit
+        habitMenu.searchHabitByName(newHabitName).makeRightClickAction();
+        habitMenu.archiveHabitButton.waitClickable();
+        habitMenu.archiveHabitButton.click();
+
+        //Expected result: habit should not be visible in the main Habit list.
+        Assertions.assertFalse(habitMenu.searchHabitByName(newHabitName).isControlDisplayed(),"Error, habit was not archived.");
+        /////////
+
+        habitMenu.archivedHabitsViewButton.click();
+        //Expected result: habit should be visible in "Archived" section after archiving it from main list.
+        habitMenu.searchHabitByName(newHabitName).waitVisibilityOfElement();
+        Assertions.assertTrue(habitMenu.searchHabitByName(newHabitName).isControlDisplayed(),"Error, habit is not present in archived elements.");
     }
 
 }
