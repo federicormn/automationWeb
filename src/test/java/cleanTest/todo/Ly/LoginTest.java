@@ -5,13 +5,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.testng.annotations.Listeners;
 import utils.GetProperties;
 
+@Listeners(utils.TestAllureListeners.class)
 public class LoginTest extends TestBaseTodoLy
 {
     @Test
     @Order(1)
-    @DisplayName("Verify login is successfully")
+    @DisplayName("Verify login is successful")
     @Description("this test case is to verify the login using valid credentials with any role")
     @Owner("Fede R")
     @Link("www.jira.com/doc01")
@@ -21,6 +24,7 @@ public class LoginTest extends TestBaseTodoLy
     @Feature("Authentication")
     @Severity(SeverityLevel.CRITICAL)
     @Story("Story Login")
+    @ExtendWith(TestBaseTodoLy.class)
     public void verifyLoginSuccesfully()
     {
         mainPage.loginButton.click();

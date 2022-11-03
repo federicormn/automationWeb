@@ -20,6 +20,9 @@ public class FactoryBrowser
             case "edge":
                 browser = new Edge();
                 break;
+            case "docker":
+                browser = new BrowserDocker();
+                break;
             default:
                 browser = new FireFox();
                 break;

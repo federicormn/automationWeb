@@ -15,8 +15,7 @@ public class Session
 
     private Session()
     {
-        // todo --> create properties file - browser
-        //SE LLAMA UNA UNICA VEZ -- TO-DO CREATE PROPERTIES FILE (browser) - NO USAR VALORES QUEMADOS
+        //SE LLAMA UNA UNICA VEZ -- TO-DO CREATE PROPERTIES FILE (browser) - NO USAR VALORES QUEMADOS (CHECKED)
         browser = FactoryBrowser.make(GetProperties.getInstance().getBrowser()).create();
     }
 

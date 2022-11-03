@@ -20,18 +20,52 @@ repositories {
 }
 
 dependencies {
+    testImplementation("org.testng:testng:7.6.1")
+    testRuntimeOnly("org.junit.support:testng-engine:1.0.4") // (1)
+}
+tasks.test {
+    useJUnitPlatform() // (2)
+}
+
+tasks.test {
+    useJUnitPlatform()
+    systemProperty("testng.useDefaultListeners", "true")
+
+}
+
+tasks.test {
+    useJUnitPlatform {
+        includeTags("included")
+        excludeTags("excluded")
+    }
+}
+
+dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     implementation 'org.seleniumhq.selenium:selenium-java:4.5.0'
     testImplementation 'io.qameta.allure:allure-junit5:2.19.0'
     runtimeOnly 'org.aspectj:aspectjweaver:1.9.9.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.1'
 
 
 }
 
+def envFile = !project.hasProperty("envFile")?"":project.properties['envFile']
+//gradle test -PenvFile=qa.properties
+//gradle clean test -PenvFile=preprod.properties --tests "LoginTest"
 test {
+    systemProperty("envFile", envFile.toString())
     useJUnitPlatform()
 }
+
+//test { //this is the gradle task to be executed
+//    useJUnitPlatform()
+//    useTestNG() { //Tells Gradle to use TestNG
+//        useDefaultListeners = true // Tells TestNG to execute its default reporting structure
+//        suites 'src/test/suite.xml' //location of our suite.xml
+//    }
+//}
 
 allure {
     version = '2.2.1'
