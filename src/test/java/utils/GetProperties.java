@@ -30,6 +30,8 @@ public class GetProperties
                 user=properties.getProperty("user");
                 pwd=properties.getProperty("pwd");
                 browser=properties.getProperty("browser");
+                System.out.println("********"+browser+"+++++++"+properties.getProperty("browser"));
+                System.out.println("HOST********"+host);
             } catch (IOException e)
             {
                 throw new RuntimeException(e);

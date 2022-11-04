@@ -149,5 +149,12 @@ public class Control
         action.contextClick(this.control).perform();
     }
 
+    public void hoverAction()
+    {
+        this.findControl();
+        Actions action = new Actions(Session.getInstance().getBrowser());
+        action.moveToElement(this.control).perform();
+    }
+
 
 }

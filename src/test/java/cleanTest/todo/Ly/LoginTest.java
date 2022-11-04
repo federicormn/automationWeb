@@ -1,10 +1,7 @@
 package cleanTest.todo.Ly;
 
 import io.qameta.allure.*;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testng.annotations.Listeners;
 import utils.GetProperties;
@@ -24,6 +21,7 @@ public class LoginTest extends TestBaseTodoLy
     @Feature("Authentication")
     @Severity(SeverityLevel.CRITICAL)
     @Story("Story Login")
+    @Tag("SmokeTest")
     @ExtendWith(TestBaseTodoLy.class)
     public void verifyLoginSuccesfully()
     {

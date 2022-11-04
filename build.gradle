@@ -51,12 +51,23 @@ dependencies {
 
 }
 
-def envFile = !project.hasProperty("envFile")?"":project.properties['envFile']
+def envFile = !project.hasProperty("envFile")?"qa.properties":project.properties['envFile']
 //gradle test -PenvFile=qa.properties
 //gradle clean test -PenvFile=preprod.properties --tests "LoginTest"
 test {
     systemProperty("envFile", envFile.toString())
     useJUnitPlatform()
+}
+
+//gradle clean -x test -PenvFile=qa.properties tags -PtestSuite=SmokeTest
+
+def testSuite = !project.hasProperty("testSuite")?"Acceptance":project.properties['testSuite']
+def tags = tasks.register("tags",Test) {
+    systemProperty("envFile",envFile.toString())
+    systemProperty("testSuite",testSuite.toString())
+    useJUnitPlatform {
+        includeTags testSuite
+    }
 }
 
 //test { //this is the gradle task to be executed
@@ -67,6 +78,7 @@ test {
 //    }
 //}
 
+//allure serve build\allure-results --> IN CMD
 allure {
     version = '2.2.1'
     autoconfigure = true
