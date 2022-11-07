@@ -17,6 +17,7 @@ public class PhpExercise extends TestBasePhpTravels
     {
         String testPassword = "123456";
         String testName = "Fede";
+        String testEmail = genericMethods.getAlphaNumericString(4)+"@mail.com";
         String currentTab = Session.getInstance().getBrowser().getWindowHandle();
 
         mainPagePHP.signUpButton.click();
@@ -25,7 +26,7 @@ public class PhpExercise extends TestBasePhpTravels
 
         registerPagePHP.firstNameTextBox.writeText(testName);
         registerPagePHP.lastNameTextBox.writeText(genericMethods.getAlphaNumericString(4));
-        registerPagePHP.emailTextBox.writeText(genericMethods.getAlphaNumericString(4)+"@mail.com");
+        registerPagePHP.emailTextBox.writeText(testEmail);
         registerPagePHP.phoneNumberTextBox.writeText("12345678");
 
         registerPagePHP.companyNameTextBox.writeText(genericMethods.getAlphaNumericString(5));
@@ -50,7 +51,7 @@ public class PhpExercise extends TestBasePhpTravels
         registerPagePHP.captchaCheckbox.waitVisibilityOfElement();
         registerPagePHP.captchaCheckbox.waitClickable();
         registerPagePHP.captchaCheckbox.check();
-        Thread.sleep(10000);
+        Thread.sleep(8000);
         Session.getInstance().switchToDefault();
         registerPagePHP.registerButton.waitClickable();
         registerPagePHP.registerButton.click();
@@ -74,7 +75,11 @@ public class PhpExercise extends TestBasePhpTravels
         Assertions.assertTrue(loginPagePHP.loginButton.isControlDisplayed());
         Session.getInstance().closeTabAndReturnToCurrent(currentTab);
 
+        userPage.accountSettingsButton.click();
+        userPage.logoutButton.click();
+
         Thread.sleep(4000);
+
 
     }
 }
