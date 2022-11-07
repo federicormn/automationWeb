@@ -6,12 +6,11 @@ import org.junit.jupiter.api.Test;
 import singletonSession.Session;
 import utils.GenericMethods;
 
-public class PhpExercise extends TestBasePhpTravels
-{
-    GenericMethods genericMethods = new GenericMethods();
+    public class PhpExercise extends TestBasePhpTravels
+    {
+        GenericMethods genericMethods = new GenericMethods();
 
-
-    @Test
+        @Test
     @Tag("PHP")
     public void registerAndLoginTest() throws InterruptedException
     {
@@ -21,7 +20,6 @@ public class PhpExercise extends TestBasePhpTravels
         String currentTab = Session.getInstance().getBrowser().getWindowHandle();
 
         mainPagePHP.signUpButton.click();
-        //Session.getInstance().moveToTab("https://phptravels.org/register.php");
         Session.getInstance().switchTab(currentTab);
 
         registerPagePHP.firstNameTextBox.writeText(testName);
@@ -56,12 +54,10 @@ public class PhpExercise extends TestBasePhpTravels
         registerPagePHP.registerButton.waitClickable();
         registerPagePHP.registerButton.click();
 
-        //Session.getInstance().moveToTab("https://phptravels.com/demo/");
         Session.getInstance().closeTabAndReturnToCurrent(currentTab);
 
         mainPagePHP.loginButton.click();
 
-        Session.getInstance().moveToTab("https://phptravels.org/clientarea.php");
         currentTab = Session.getInstance().getBrowser().getWindowHandle();
         Session.getInstance().switchTab(currentTab);
 
@@ -75,8 +71,9 @@ public class PhpExercise extends TestBasePhpTravels
         Assertions.assertTrue(loginPagePHP.loginButton.isControlDisplayed());
         Session.getInstance().closeTabAndReturnToCurrent(currentTab);
 
-        userPage.accountSettingsButton.click();
-        userPage.logoutButton.click();
+        Assertions.assertTrue(mainPagePHP.loginButton.isControlDisplayed());
+        //userPage.accountSettingsButton.click();
+        //userPage.logoutButton.click();
 
         Thread.sleep(4000);
 
